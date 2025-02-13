@@ -1,0 +1,25 @@
+name: news-sci-bot
+
+services:
+  bot:
+    build: 
+      context: ./docker/
+      dockerfile: Dockerfile
+    secrets:
+      - mistral_key
+      - bsky_usr
+      - bsky_psw
+    networks:
+      - mynet
+
+secrets:
+  mistral_key:
+    environment: mistral_api_key
+  bsky_usr:
+    environment: bsky_username
+  bsky_psw:
+    environment: bsky_password
+  
+networks:
+  mynet:
+    driver: bridge
